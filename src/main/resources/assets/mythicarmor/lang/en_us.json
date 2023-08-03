@@ -1,0 +1,16 @@
+{
+  "item.mythicarmor.mythic_shard": "Mythic Shard",
+  "item.mythicarmor.magmite_essence": "Essence of Magma",
+  "item.mythicarmor.enderite_essence": "Essence of The End",
+  "item.mythicarmor.prosperite_essence": "Essence of Prosperity",
+  "item.mythicarmor.amethite_essence": "Essence of Amethyst",
+
+  "item.mythicarmor.mythic_helmet": "Mythic Helmet",
+  "item.mythicarmor.mythic_chestplate": "Mythic Chestplate",
+  "item.mythicarmor.mythic_leggings": "Mythic Leggings",
+  "item.mythicarmor.mythic_boots": "Mythic Boots",
+
+  "block.mythicarmor.mythic_ore": "Mythic Ore",
+
+  "creativetab.mythic_armor_tab": "Mythic Armor"
+}
