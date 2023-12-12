@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "mythicarmor:item/prosperite_essence"
+    "layer0": "mythicarmor:item/agility_essence"
   }
 }

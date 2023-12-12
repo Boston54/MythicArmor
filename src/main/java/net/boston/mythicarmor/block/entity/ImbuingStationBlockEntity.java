@@ -1,11 +1,15 @@
 package net.boston.mythicarmor.block.entity;
 
-import net.boston.mythicarmor.block.custom.ImbuingStation;
+import net.boston.mythicarmor.gui.ImbuingStationMenu;
 import net.boston.mythicarmor.item.ModItems;
+import net.boston.mythicarmor.item.custom.EssenceItem;
+import net.boston.mythicarmor.item.custom.MythicItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -32,10 +36,10 @@ public class ImbuingStationBlockEntity extends BlockEntity implements MenuProvid
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 300;
+    private int maxProgress = 10;
 
 
-    private final ItemStackHandler itemHandler = new ItemStackHandler(3) {
+    private final ItemStackHandler itemHandler = new ItemStackHandler(2) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -80,7 +84,7 @@ public class ImbuingStationBlockEntity extends BlockEntity implements MenuProvid
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-        return null;
+        return new ImbuingStationMenu(id, inventory, this, this.data);
     }
 
     @Override
@@ -105,6 +109,7 @@ public class ImbuingStationBlockEntity extends BlockEntity implements MenuProvid
     @Override
     protected void saveAdditional(CompoundTag nbt) {
         nbt.put("inventory", itemHandler.serializeNBT());
+        nbt.putInt("imbuing_station.progress", this.progress);
         super.saveAdditional(nbt);
     }
 
@@ -112,6 +117,7 @@ public class ImbuingStationBlockEntity extends BlockEntity implements MenuProvid
     public void load(CompoundTag nbt) {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inventory"));
+        progress = nbt.getInt("imbuing_station.progress");
     }
 
     public void drops() {
@@ -132,7 +138,7 @@ public class ImbuingStationBlockEntity extends BlockEntity implements MenuProvid
             setChanged(level, blockPos, blockState);
 
             if (pEntity.progress >= pEntity.maxProgress)
-                craftItem(pEntity);
+                imbueItem(pEntity);
         } else {
             pEntity.resetProgress();
             setChanged(level, blockPos, blockState);
@@ -143,19 +149,35 @@ public class ImbuingStationBlockEntity extends BlockEntity implements MenuProvid
         this.progress = 0;
     }
 
-    private static void craftItem(ImbuingStationBlockEntity pEntity) {
+    private static void imbueItem(ImbuingStationBlockEntity pEntity) {
         if (hasRecipe(pEntity)) {
-            @NotNull ItemStack essence = pEntity.itemHandler.getStackInSlot(1);
-            // Decide which item to output based on which essence was used
-//            ItemStack outputItem = switch (essence.getDisplayName().getString()) {
-//                case "magmite_essence": new ItemStack();
-//                case "enderite_essence": new ItemStack();
-//                case "properite_essence": new ItemStack();
-//                case "amethite_essence": new ItemStack();
-//            };
+            pEntity.progress++;
 
-            pEntity.itemHandler.extractItem(1,1,false);
-            //pEntity.itemHandler.setStackInSlot(1,)
+            if (pEntity.progress >= pEntity.maxProgress) {
+                @NotNull Item essence = pEntity.itemHandler.getStackInSlot(0).getItem();
+                @NotNull ItemStack mythicItem = pEntity.itemHandler.getStackInSlot(1);
+
+                MythicItem.imbue(mythicItem, (EssenceItem)essence);
+
+                pEntity.itemHandler.extractItem(0, 1, false);
+
+                if (pEntity.itemHandler.getStackInSlot(1).isEmpty()) {
+                    pEntity.getLevel().playLocalSound(pEntity.getBlockPos(), SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 1f, 1f, false);
+                }
+
+                // Add Unbreakable modifier at 100% amethyst
+                int amethyst = MythicItem.getImbueAmount(mythicItem, 3);
+                if (amethyst == 100) {
+                    CompoundTag nbtTag = mythicItem.getTag();
+                    if (nbtTag == null) nbtTag = new CompoundTag();
+                    // Modify the int
+                    nbtTag.putBoolean("Unbreakable", true);
+                    // Give the tag back to the item
+                    mythicItem.setTag(nbtTag);
+                }
+
+                pEntity.resetProgress();
+            }
         }
     }
 
@@ -166,17 +188,19 @@ public class ImbuingStationBlockEntity extends BlockEntity implements MenuProvid
         }
 
         // Is there essence in the entity
-        boolean hasEssence = false;
-        for (Item essenceItem : ModItems.ESSENCES_ARR) {
-            if (pEntity.itemHandler.getStackInSlot(1).getItem() == essenceItem) {
-                hasEssence = true;
-                break;
-            }
-        }
+        Item itemInSlot1 = pEntity.itemHandler.getStackInSlot(0).getItem();
+        boolean hasEssence = Arrays.stream(ModItems.ESSENCES_ARR).anyMatch((item) -> item.get() == itemInSlot1);
 
-        // Is the output slot empty
-        boolean canInsertItem = inventory.getItem(2).isEmpty();
+        // Is there a mythic item in the input slot
+        Item itemInSlot2 = inventory.getItem(1).getItem();
+        boolean hasArmor = Arrays.stream(ModItems.MYTHIC_ITEMS_ARR).anyMatch((item) -> item.get() == itemInSlot2);
 
-        return hasEssence && canInsertItem;
+        // Only do the rest of the checks if it has already been confirmed that this is a mythic armor item
+        if (!hasArmor) return false;
+
+        // Can the armor be imbued
+        boolean canBeImbued = MythicItem.canImbueAmount(inventory.getItem(1), 1) && MythicItem.isValidImbue(inventory.getItem(0), inventory.getItem(1));
+
+        return hasEssence && canBeImbued; // note hasArmor has already been used for previous return
     }
 }

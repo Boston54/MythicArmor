@@ -1,10 +1,18 @@
 package net.boston.mythicarmor;
 
 import com.mojang.logging.LogUtils;
-import net.boston.mythicarmor.block.custom.ModBlocks;
+import net.boston.mythicarmor.block.ModBlocks;
 import net.boston.mythicarmor.block.entity.ModBlockEntities;
+import net.boston.mythicarmor.gui.ImbuingStationScreen;
+import net.boston.mythicarmor.gui.ModMenuTypes;
 import net.boston.mythicarmor.item.ModCreativeModeTabs;
 import net.boston.mythicarmor.item.ModItems;
+import net.boston.mythicarmor.item.custom.MythicAxeItem;
+import net.boston.mythicarmor.item.custom.MythicPickaxeItem;
+import net.boston.mythicarmor.item.custom.MythicShovelItem;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -24,6 +32,7 @@ public class MythicArmor {
     public static final String MOD_ID = "mythicarmor";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
+
     public MythicArmor() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -31,6 +40,11 @@ public class MythicArmor {
         ModCreativeModeTabs.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
+
+        MinecraftForge.EVENT_BUS.register(MythicPickaxeItem.class);
+        MinecraftForge.EVENT_BUS.register(MythicAxeItem.class);
+        MinecraftForge.EVENT_BUS.register(MythicShovelItem.class);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -62,7 +76,8 @@ public class MythicArmor {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
+            MenuScreens.register(ModMenuTypes.IMBUING_STATION_MENU.get(), ImbuingStationScreen::new);
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.IMBUING_STATION.get(), RenderType.solid());
         }
     }
 }

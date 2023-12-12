@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "features": "mythicarmor:mythic_ore_gen",
+  "biomes": "#minecraft:is_end",
+  "step": "raw_generation"
+}

@@ -1,7 +1,7 @@
 package net.boston.mythicarmor.item;
 
 import net.boston.mythicarmor.MythicArmor;
-import net.boston.mythicarmor.block.custom.ModBlocks;
+import net.boston.mythicarmor.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -19,11 +19,23 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.mythic_armor_tab"))
                     .displayItems((nParameters, pOutput) -> {
                         pOutput.accept(ModItems.MYTHIC_SHARD.get());
+                        pOutput.accept(ModItems.MYTHIC_INGOT.get());
                         pOutput.accept(ModBlocks.MYTHIC_ORE.get());
-                        pOutput.accept(ModItems.ENDERITE_ESSENCE.get());
-                        pOutput.accept(ModItems.MAGMITE_ESSENCE.get());
-                        pOutput.accept(ModItems.PROSPERITE_ESSENCE.get());
-                        pOutput.accept(ModItems.AMETHITE_ESSENCE.get());
+                        pOutput.accept(ModItems.MAGMA_ESSENCE.get());
+                        pOutput.accept(ModItems.ENDER_ESSENCE.get());
+                        pOutput.accept(ModItems.PROSPERITY_ESSENCE.get());
+                        pOutput.accept(ModItems.AMETHYST_ESSENCE.get());
+                        pOutput.accept(ModItems.AGILITY_ESSENCE.get());
+                        pOutput.accept(ModItems.MYTHIC_HELMET.get());
+                        pOutput.accept(ModItems.MYTHIC_CHESTPLATE.get());
+                        pOutput.accept(ModItems.MYTHIC_LEGGINGS.get());
+                        pOutput.accept(ModItems.MYTHIC_BOOTS.get());
+                        pOutput.accept(ModItems.MYTHIC_SWORD.get());
+                        pOutput.accept(ModItems.MYTHIC_AXE.get());
+                        pOutput.accept(ModItems.MYTHIC_PICKAXE.get());
+                        pOutput.accept(ModItems.MYTHIC_SHOVEL.get());
+                        pOutput.accept(ModBlocks.IMBUING_STATION.get());
+                        pOutput.accept(ModItems.MYTHIC_UPGRADE.get());
                     })
                     .build());
 

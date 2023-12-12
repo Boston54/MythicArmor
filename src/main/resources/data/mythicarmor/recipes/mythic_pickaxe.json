@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:smithing_transform",
+    "base": {
+        "item": "minecraft:netherite_pickaxe"
+    },
+    "addition": {
+        "item": "mythicarmor:mythic_ingot"
+    },
+    "result": {
+        "item": "mythicarmor:mythic_pickaxe"
+    },
+    "template": {
+        "item": "mythicarmor:mythic_upgrade"
+    }
+}

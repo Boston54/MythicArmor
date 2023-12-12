@@ -1,16 +1,26 @@
 {
   "item.mythicarmor.mythic_shard": "Mythic Shard",
-  "item.mythicarmor.magmite_essence": "Essence of Magma",
-  "item.mythicarmor.enderite_essence": "Essence of The End",
-  "item.mythicarmor.prosperite_essence": "Essence of Prosperity",
-  "item.mythicarmor.amethite_essence": "Essence of Amethyst",
+  "item.mythicarmor.mythic_ingot": "Mythic Ingot",
+
+  "item.mythicarmor.magma_essence": "Essence of Magma",
+  "item.mythicarmor.ender_essence": "Essence of The End",
+  "item.mythicarmor.prosperity_essence": "Essence of Prosperity",
+  "item.mythicarmor.amethyst_essence": "Essence of Amethyst",
+  "item.mythicarmor.agility_essence": "Essence of Agility",
 
   "item.mythicarmor.mythic_helmet": "Mythic Helmet",
   "item.mythicarmor.mythic_chestplate": "Mythic Chestplate",
   "item.mythicarmor.mythic_leggings": "Mythic Leggings",
   "item.mythicarmor.mythic_boots": "Mythic Boots",
 
+  "item.mythicarmor.mythic_sword": "Mythic Sword",
+  "item.mythicarmor.mythic_axe": "Mythic Axe",
+  "item.mythicarmor.mythic_pickaxe": "Mythic Pickaxe",
+  "item.mythicarmor.mythic_shovel": "Mythic Shovel",
+  "item.mythicarmor.mythic_hoe": "Mythic Hoe",
+
   "block.mythicarmor.mythic_ore": "Mythic Ore",
+  "block.mythicarmor.imbuing_station": "Imbuing Station",
 
   "creativetab.mythic_armor_tab": "Mythic Armor"
 }

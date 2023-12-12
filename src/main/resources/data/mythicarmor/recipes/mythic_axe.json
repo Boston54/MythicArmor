@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:smithing_transform",
+    "base": {
+        "item": "minecraft:netherite_axe"
+    },
+    "addition": {
+        "item": "mythicarmor:mythic_ingot"
+    },
+    "result": {
+        "item": "mythicarmor:mythic_axe"
+    },
+    "template": {
+        "item": "mythicarmor:mythic_upgrade"
+    }
+}

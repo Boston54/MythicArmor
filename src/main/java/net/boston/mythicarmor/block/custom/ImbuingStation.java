@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class ImbuingStation extends BaseEntityBlock {
 
-    protected ImbuingStation(Properties pProperties) {
+    public ImbuingStation(Properties pProperties) {
         super(pProperties);
     }
 

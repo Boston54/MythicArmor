@@ -1,6 +1,7 @@
-package net.boston.mythicarmor.block.custom;
+package net.boston.mythicarmor.block;
 
 import net.boston.mythicarmor.MythicArmor;
+import net.boston.mythicarmor.block.custom.ImbuingStation;
 import net.boston.mythicarmor.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -21,10 +22,10 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, MythicArmor.MOD_ID);
 
     public static final RegistryObject<Block> MYTHIC_ORE = registerBlock("mythic_ore",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.ANCIENT_DEBRIS).mapColor(MapColor.COLOR_MAGENTA)));
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.ANCIENT_DEBRIS).mapColor(MapColor.COLOR_MAGENTA).sound(SoundType.STONE)));
 
     public static final RegistryObject<Block> IMBUING_STATION = registerBlock("imbuing_station",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.BREWING_STAND)));
+            () -> new ImbuingStation(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

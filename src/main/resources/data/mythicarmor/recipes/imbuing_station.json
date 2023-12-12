@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#M#",
+        "SDS",
+        "#B#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:oak_log"
+        },
+        "M": {
+            "item": "mythicarmor:mythic_shard"
+        },
+        "S": {
+            "item": "minecraft:stone"
+        },
+        "D": {
+            "item": "minecraft:diamond_block"
+        },
+        "B": {
+            "item": "minecraft:bone_block"
+        }
+    },
+    "result": {
+        "item": "mythicarmor:imbuing_station",
+        "count": 1
+    }
+}

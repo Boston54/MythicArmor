@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#n#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "mythicarmor:mythic_shard"
+        },
+        "n": {
+            "item": "minecraft:netherite_ingot"
+        }
+    },
+    "result": {
+        "item": "mythicarmor:mythic_ingot"
+    }
+}

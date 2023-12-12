@@ -1,7 +1,7 @@
 package net.boston.mythicarmor.block.entity;
 
 import net.boston.mythicarmor.MythicArmor;
-import net.boston.mythicarmor.block.custom.ModBlocks;
+import net.boston.mythicarmor.block.ModBlocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
