@@ -1,6 +1,5 @@
 package net.boston.mythicarmor.item.custom;
 
-import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import net.boston.mythicarmor.item.ModItems;
 import net.minecraft.client.gui.screens.Screen;
@@ -8,7 +7,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
@@ -26,7 +24,7 @@ import java.util.Map;
 
 import static net.boston.mythicarmor.item.custom.MythicItem.*;
 
-public class MythicAxeItem extends AxeItem {
+public class MythicAxeItem extends AxeItem implements ColorableMythicItem {
     public MythicAxeItem(Tier pTier, float pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
         super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
     }
@@ -40,6 +38,13 @@ public class MythicAxeItem extends AxeItem {
         if (totalImbue > 0) {
             pTooltipComponents.add(Component.literal(""));
             if (Screen.hasShiftDown()) {
+                // Magma
+                double magma = getImbueAmount(item, 0);
+                String magmaStart = ModItems.imbueColors[0] + " * §7";
+                if (magma > 0) {
+                    pTooltipComponents.add(Component.literal(magmaStart+"+"+(magma*0.75)+"% outgoing damage to non-fire-resistant"));
+                    pTooltipComponents.add(Component.literal("§7   enemies"));
+                }
 
                 // Ender
                 double ender = getImbueAmount(item, 1);
@@ -68,7 +73,7 @@ public class MythicAxeItem extends AxeItem {
                     pTooltipComponents.add(Component.literal(amethystStart+"+"+(amethyst/2)+"% outgoing damage"));
                     pTooltipComponents.add(Component.literal(amethystStart+(amethyst/4)+"% chance to repair by 1 durability when"));
                     pTooltipComponents.add(Component.literal("§7   breaking a block"));
-                    if (amethyst >= 100) pTooltipComponents.add(Component.literal(amethystStart+"unbreakable"));
+                    if (amethyst >= 100) pTooltipComponents.add(Component.literal(amethystStart+"Unbreakable"));
                 }
 
                 // Agility
@@ -83,6 +88,7 @@ public class MythicAxeItem extends AxeItem {
             } else {
                 pTooltipComponents.add(Component.literal("§2[SHIFT] for imbued stats"));
             }
+            pTooltipComponents.add(Component.literal(""));
         }
 
         super.appendHoverText(item, pLevel, pTooltipComponents, pIsAdvanced);
@@ -99,17 +105,8 @@ public class MythicAxeItem extends AxeItem {
 
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
-        final Multimap<Attribute, AttributeModifier> superAttributes = super.getAttributeModifiers(slot, stack);
-        Multimap<Attribute, AttributeModifier> attributes = ArrayListMultimap.create();
-        for (Map.Entry<Attribute, AttributeModifier> attr : superAttributes.entries()) attributes.put(attr.getKey(), attr.getValue());
-
-        if (slot == EquipmentSlot.MAINHAND && stack.getItem() instanceof MythicAxeItem) {
-            int agility = MythicItem.getImbueAmount(stack, 4);
-            if (agility > 0) {
-                changeModifier(attributes, Attributes.ATTACK_SPEED, MythicItem.AGILITY_ATTACKSPEED_UUID, (agility / 100.0) * 0.5, "mythicarmor:agility_attackspeed", AttributeModifier.Operation.MULTIPLY_BASE);
-            }
-        }
-        return attributes;
+        Multimap<Attribute, AttributeModifier> initialModifiers = super.getAttributeModifiers(slot, stack);
+        return MythicItemEffects.updateAttributeModifiers(initialModifiers, slot, stack);
     }
 
     @Override

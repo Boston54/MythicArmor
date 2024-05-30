@@ -1,6 +1,7 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "mythicarmor:item/mythic_axe"
+    "layer0": "mythicarmor:item/mythic_axe",
+    "layer1": "mythicarmor:item/mythic_axe_overlay"
   }
 }

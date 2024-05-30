@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "mythicarmor:item/mythic_boots"
+    "layer0": "mythicarmor:item/mythic_boots",
+    "layer1": "mythicarmor:item/mythic_boots_overlay"
   }
 }

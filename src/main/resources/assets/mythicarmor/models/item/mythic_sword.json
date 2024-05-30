@@ -1,6 +1,7 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "mythicarmor:item/mythic_sword"
+    "layer0": "mythicarmor:item/mythic_sword",
+    "layer1": "mythicarmor:item/mythic_sword_overlay"
   }
 }

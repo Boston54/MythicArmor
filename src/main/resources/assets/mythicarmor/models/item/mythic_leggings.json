@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "mythicarmor:item/mythic_leggings"
+    "layer0": "mythicarmor:item/mythic_leggings",
+    "layer1": "mythicarmor:item/mythic_leggings_overlay"
   }
 }

@@ -5,10 +5,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -21,7 +18,7 @@ import java.util.Map;
 
 import static net.boston.mythicarmor.item.custom.MythicItem.*;
 
-public class MythicPickaxeItem extends PickaxeItem {
+public class MythicPickaxeItem extends PickaxeItem implements ColorableMythicItem {
     public MythicPickaxeItem(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
         super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
     }
@@ -49,7 +46,7 @@ public class MythicPickaxeItem extends PickaxeItem {
                 if (amethyst > 0) {
                     pTooltipComponents.add(Component.literal(amethystStart+(amethyst/4)+"% chance to repair by 1 durability when"));
                     pTooltipComponents.add(Component.literal("§7   breaking a block"));
-                    if (amethyst >= 100) pTooltipComponents.add(Component.literal(amethystStart+"unbreakable"));
+                    if (amethyst >= 100) pTooltipComponents.add(Component.literal(amethystStart+"Unbreakable"));
                 }
 
                 // Agility
@@ -63,6 +60,7 @@ public class MythicPickaxeItem extends PickaxeItem {
             } else {
                 pTooltipComponents.add(Component.literal("§2[SHIFT] for imbued stats"));
             }
+            pTooltipComponents.add(Component.literal(""));
         }
 
         super.appendHoverText(item, pLevel, pTooltipComponents, pIsAdvanced);

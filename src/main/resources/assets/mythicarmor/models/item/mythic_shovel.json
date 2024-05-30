@@ -1,6 +1,7 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "mythicarmor:item/mythic_shovel"
+    "layer0": "mythicarmor:item/mythic_shovel",
+    "layer1": "mythicarmor:item/mythic_shovel_overlay"
   }
 }

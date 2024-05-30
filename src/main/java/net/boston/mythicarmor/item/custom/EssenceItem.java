@@ -55,7 +55,7 @@ public class EssenceItem extends Item {
                 // Amethyst
                 pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + "To Armor:"));
                 pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + " *§7 +0.1 max health"));
-                pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + " *§7 -0.125% movement speed"));
+                pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + " *§7 -0.2% movement speed"));
                 pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + "To Weapons:"));
                 pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + " *§7 +0.5% outgoing damage"));
                 pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + "To Tools:"));
@@ -67,7 +67,7 @@ public class EssenceItem extends Item {
             case 4:
                 // Agility
                 pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + "To Armor:"));
-                pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + " *§7 +0.75% movement speed"));
+                pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + " *§7 +0.4% movement speed"));
                 pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + "To Weapons:"));
                 pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + " *§7 +0.5% attack speed"));
                 pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + "To Tools:"));

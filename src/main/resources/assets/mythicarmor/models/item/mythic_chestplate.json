@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "mythicarmor:item/mythic_chestplate"
+    "layer0": "mythicarmor:item/mythic_chestplate",
+    "layer1": "mythicarmor:item/mythic_chestplate_overlay"
   }
 }

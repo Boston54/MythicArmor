@@ -1,6 +1,7 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "mythicarmor:item/mythic_pickaxe"
+    "layer0": "mythicarmor:item/mythic_pickaxe",
+    "layer1": "mythicarmor:item/mythic_pickaxe_overlay"
   }
 }

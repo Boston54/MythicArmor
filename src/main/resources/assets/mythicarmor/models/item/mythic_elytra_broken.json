@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "mythicarmor:item/mythic_elytra_broken",
+    "layer1": "mythicarmor:item/mythic_elytra_broken_overlay"
+  }
+}

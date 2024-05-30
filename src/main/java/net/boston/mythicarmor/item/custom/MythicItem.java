@@ -1,6 +1,5 @@
 package net.boston.mythicarmor.item.custom;
 
-import com.google.common.collect.Multimap;
 import net.boston.mythicarmor.item.ModItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -11,8 +10,6 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -23,21 +20,15 @@ import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import static net.boston.mythicarmor.item.ModItems.*;
 
 @Mod.EventBusSubscriber(modid = "mythicarmor", bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class MythicItem {
-    public static final UUID AMETHYST_HEALTH_UUID = UUID.nameUUIDFromBytes("mythicarmor:amethyst_health".getBytes());
-    public static final UUID AMETHYST_SPEED_UUID = UUID.nameUUIDFromBytes("mythicarmor:amethyst_speed".getBytes());
-    public static final UUID AGILITY_SPEED_UUID = UUID.nameUUIDFromBytes("mythicarmor:agility_speed".getBytes());
-    public static final UUID AGILITY_ATTACKSPEED_UUID = UUID.nameUUIDFromBytes("mythicarmor:agility_attackspeed".getBytes());
-
     public static final int maxTotalImbue = 100;
+    private static double[] DEFAULT_COLOR = {169, 0, 135};
 
     public static int getTotalImbue(ItemStack item) {
         int x = 0;
@@ -56,6 +47,14 @@ public class MythicItem {
         int imbueAmount = nbtTag.getInt(key);
         // Modify the int
         nbtTag.putInt(key, imbueAmount + 1);
+
+        // Add Unbreakable modifier at 100% amethyst
+        int amethyst = MythicItem.getImbueAmount(item, 3);
+        if (amethyst == 100) {
+            // Set unbreakable
+            nbtTag.putBoolean("Unbreakable", true);
+        }
+
         // Give the tag back to the item
         item.setTag(nbtTag);
     }
@@ -101,7 +100,7 @@ public class MythicItem {
         return item == ModItems.MYTHIC_AXE.get() || item == ModItems.MYTHIC_PICKAXE.get() || item == ModItems.MYTHIC_SHOVEL.get();
     }
 
-    private static boolean isWeapon(ItemStack mythicItem) {
+    public static boolean isWeapon(ItemStack mythicItem) {
         Item item = mythicItem.getItem();
         return item == ModItems.MYTHIC_AXE.get() || item == ModItems.MYTHIC_SWORD.get();
     }
@@ -117,6 +116,7 @@ public class MythicItem {
             if (totalImbue == 0)
                 pTooltipComponents.add(Component.literal("Use §dEssence §fat an §dImbuing Station §fto imbue."));
         }
+        pTooltipComponents.add(Component.literal(""));
 
         // Current imbue percentages
         for (int i = 0; i < imbueNames.length; i++) {
@@ -138,24 +138,6 @@ public class MythicItem {
             if (itemStack.getDamageValue() < itemStack.getMaxDamage() && getProc() < (amethyst / 4)) {
                 itemStack.setDamageValue(itemStack.getDamageValue()-1);
             }
-        }
-    }
-
-    public static void changeModifier(Multimap<Attribute, AttributeModifier> attributes, Attribute attribute, UUID uuid, double newValue, String name, AttributeModifier.Operation operation) {
-        final Collection<AttributeModifier> modifiers = attributes.get(attribute);
-        AttributeModifier selectedModifier = null;
-        for (AttributeModifier modifier: modifiers) {
-            if (modifier.getId().equals(uuid)) {
-                selectedModifier = modifier;
-                break;
-            }
-        }
-
-        if (selectedModifier != null) {
-            modifiers.remove(selectedModifier);
-            modifiers.add(new AttributeModifier(selectedModifier.getId(), selectedModifier.getName(), newValue, selectedModifier.getOperation()));
-        } else {
-            modifiers.add(new AttributeModifier(uuid, name, newValue, operation));
         }
     }
 
@@ -217,7 +199,7 @@ public class MythicItem {
             // +0.1% chance to instantly kill any enemy with less than 100 max health
             if (attackerLiving && livingAttacker.getMaxHealth() < 100) {
                 if (getProc() < attackerProsperity * 0.1) {
-                    target.kill();
+                    event.setAmount(10000);
                 }
             }
         }
@@ -277,5 +259,18 @@ public class MythicItem {
         int total = 0;
         for (ItemStack item : equipment) total += getImbueAmount(item, imbueId);
         return total;
+    }
+
+    public static int getColor(ItemStack stack) {
+        int numImbues = ModItems.imbueNames.length;
+        double totalImbue = (100 - MythicItem.getTotalImbue(stack)) / 100.0;
+        double[] rgb = {DEFAULT_COLOR[0] * totalImbue, DEFAULT_COLOR[1] * totalImbue, DEFAULT_COLOR[2] * totalImbue};
+        for (int imbueType = 0; imbueType < numImbues; imbueType++) {
+            double weighting = MythicItem.getImbueAmount(stack, imbueType) / 100.0;
+            double[] color = ModItems.imbueRGBs[imbueType];
+            for (int i = 0; i < 3; i++)
+                rgb[i] += color[i] * weighting;
+        }
+        return (int) ((Math.floor(rgb[0]) * 65536) + (Math.floor(rgb[1]) * 256) + Math.floor(rgb[2]));
     }
 }

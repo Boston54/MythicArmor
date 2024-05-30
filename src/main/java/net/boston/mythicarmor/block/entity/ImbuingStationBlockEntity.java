@@ -165,17 +165,6 @@ public class ImbuingStationBlockEntity extends BlockEntity implements MenuProvid
                     pEntity.getLevel().playLocalSound(pEntity.getBlockPos(), SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 1f, 1f, false);
                 }
 
-                // Add Unbreakable modifier at 100% amethyst
-                int amethyst = MythicItem.getImbueAmount(mythicItem, 3);
-                if (amethyst == 100) {
-                    CompoundTag nbtTag = mythicItem.getTag();
-                    if (nbtTag == null) nbtTag = new CompoundTag();
-                    // Modify the int
-                    nbtTag.putBoolean("Unbreakable", true);
-                    // Give the tag back to the item
-                    mythicItem.setTag(nbtTag);
-                }
-
                 pEntity.resetProgress();
             }
         }
