@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "mythicarmor:mythic_hoe",
+      "nbt": "{imbue.amethyst:100}"
+    },
+    "title": "Completionist+",
+    "description": "Make your mythic hoe unbreakable.",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mythicarmor:mythic_hoe",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mythicarmor:mythic_hoe"
+            ],
+            "nbt": "{imbue.amethyst:100}"
+          }
+        ]
+      }
+    }
+  }
+}

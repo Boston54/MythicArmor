@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "mythicarmor:mythic_sword"
+    },
+    "title": "MYTHIC",
+    "description": "Upgrade a Netherite item to Mythic",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mythicarmor:mythic_ingot",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "mythicarmor:mythic"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -7,10 +7,7 @@ import net.boston.mythicarmor.gui.ImbuingStationScreen;
 import net.boston.mythicarmor.gui.ModMenuTypes;
 import net.boston.mythicarmor.item.ModCreativeModeTabs;
 import net.boston.mythicarmor.item.ModItems;
-import net.boston.mythicarmor.item.custom.MythicAxeItem;
-import net.boston.mythicarmor.item.custom.MythicElytraItem;
-import net.boston.mythicarmor.item.custom.MythicPickaxeItem;
-import net.boston.mythicarmor.item.custom.MythicShovelItem;
+import net.boston.mythicarmor.item.custom.*;
 import net.boston.mythicarmor.item.elytra.MythicElytraArmorStandLayer;
 import net.boston.mythicarmor.item.elytra.MythicElytraLayer;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -61,6 +58,7 @@ public class MythicArmor {
         MinecraftForge.EVENT_BUS.register(MythicPickaxeItem.class);
         MinecraftForge.EVENT_BUS.register(MythicAxeItem.class);
         MinecraftForge.EVENT_BUS.register(MythicShovelItem.class);
+        MinecraftForge.EVENT_BUS.register(MythicHoeItem.class);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);

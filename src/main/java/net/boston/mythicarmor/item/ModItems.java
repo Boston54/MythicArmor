@@ -48,11 +48,13 @@ public class ModItems {
     public static final RegistryObject<Item> MYTHIC_SWORD = ITEMS.register("mythic_sword", () ->
             new MythicSwordItem(ModToolMaterial.MYTHIC, 8, -2.3f, new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
     public static final RegistryObject<Item> MYTHIC_PICKAXE = ITEMS.register("mythic_pickaxe", () ->
-            new MythicPickaxeItem(ModToolMaterial.MYTHIC, 2, -2.7f, new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
+            new MythicPickaxeItem(ModToolMaterial.MYTHIC, 5, -2.7f, new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
     public static final RegistryObject<Item> MYTHIC_AXE = ITEMS.register("mythic_axe", () ->
             new MythicAxeItem(ModToolMaterial.MYTHIC, 10, -2.9f, new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
     public static final RegistryObject<Item> MYTHIC_SHOVEL = ITEMS.register("mythic_shovel", () ->
-            new MythicShovelItem(ModToolMaterial.MYTHIC, 7,-2.9f, new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
+            new MythicShovelItem(ModToolMaterial.MYTHIC, 6,-2.9f, new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
+    public static final RegistryObject<Item> MYTHIC_HOE = ITEMS.register("mythic_hoe", () ->
+            new MythicHoeItem(ModToolMaterial.MYTHIC, 2, 1f, new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
     public static final RegistryObject<Item> MYTHIC_ELYTRA = ITEMS.register("mythic_elytra", () ->
             new MythicElytraItem(new Item.Properties().rarity(Rarity.EPIC).durability(700).fireResistant()));
 
@@ -67,7 +69,7 @@ public class ModItems {
 
     public static final RegistryObject<Item>[] ESSENCES_ARR = new RegistryObject[]{MAGMA_ESSENCE, ENDER_ESSENCE, PROSPERITY_ESSENCE, AMETHYST_ESSENCE, AGILITY_ESSENCE};
     public static final RegistryObject<Item>[] MYTHIC_ITEMS_ARR = new RegistryObject[]{
-            MYTHIC_HELMET, MYTHIC_CHESTPLATE, MYTHIC_LEGGINGS, MYTHIC_BOOTS, MYTHIC_SWORD, MYTHIC_AXE, MYTHIC_PICKAXE, MYTHIC_SHOVEL, MYTHIC_ELYTRA};
+            MYTHIC_HELMET, MYTHIC_CHESTPLATE, MYTHIC_LEGGINGS, MYTHIC_BOOTS, MYTHIC_SWORD, MYTHIC_AXE, MYTHIC_PICKAXE, MYTHIC_SHOVEL, MYTHIC_HOE, MYTHIC_ELYTRA};
 
 
     // The order to display the imbued percentages in the item description. Must follow the same order
@@ -83,7 +85,7 @@ public class ModItems {
     public static void registerItemColors() {
         Minecraft.getInstance().getItemColors().register(
                 (itemStack, tintIndex) -> tintIndex == 0 ? MythicItem.getColor(itemStack) : 0xFFFFFF,
-                MYTHIC_HELMET.get(), MYTHIC_CHESTPLATE.get(), MYTHIC_LEGGINGS.get(), MYTHIC_BOOTS.get(), MYTHIC_SWORD.get(), MYTHIC_AXE.get(), MYTHIC_SHOVEL.get(), MYTHIC_PICKAXE.get(), MYTHIC_ELYTRA.get()
+                MYTHIC_HELMET.get(), MYTHIC_CHESTPLATE.get(), MYTHIC_LEGGINGS.get(), MYTHIC_BOOTS.get(), MYTHIC_SWORD.get(), MYTHIC_AXE.get(), MYTHIC_SHOVEL.get(), MYTHIC_PICKAXE.get(), MYTHIC_HOE.get(), MYTHIC_ELYTRA.get()
         );
     }
 }

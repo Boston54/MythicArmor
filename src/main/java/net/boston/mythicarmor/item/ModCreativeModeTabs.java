@@ -21,6 +21,7 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.MYTHIC_SHARD.get());
                         pOutput.accept(ModItems.MYTHIC_INGOT.get());
                         pOutput.accept(ModBlocks.MYTHIC_ORE.get());
+                        pOutput.accept(ModItems.MYTHIC_UPGRADE.get());
                         pOutput.accept(ModItems.MAGMA_ESSENCE.get());
                         pOutput.accept(ModItems.ENDER_ESSENCE.get());
                         pOutput.accept(ModItems.PROSPERITY_ESSENCE.get());
@@ -34,9 +35,9 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.MYTHIC_AXE.get());
                         pOutput.accept(ModItems.MYTHIC_PICKAXE.get());
                         pOutput.accept(ModItems.MYTHIC_SHOVEL.get());
-                        pOutput.accept(ModBlocks.IMBUING_STATION.get());
-                        pOutput.accept(ModItems.MYTHIC_UPGRADE.get());
+                        pOutput.accept(ModItems.MYTHIC_HOE.get());
                         pOutput.accept(ModItems.MYTHIC_ELYTRA.get());
+                        pOutput.accept(ModBlocks.IMBUING_STATION.get());
                     })
                     .build());
 

@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "mythicarmor:mythic_hoe"
+    },
+    "title": "Completionist",
+    "description": "Theres no other reason to make one of these.",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mythicarmor:mythic_item",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mythicarmor:mythic_hoe"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

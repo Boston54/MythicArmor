@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "mythicarmor:imbuing_station"
+    },
+    "title": "Witchcraft",
+    "description": "Obtain an imbuing station.",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mythicarmor:mythic_shard",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mythicarmor:imbuing_station"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

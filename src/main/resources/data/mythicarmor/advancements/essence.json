@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "mythicarmor:magma_essence"
+    },
+    "title": "Holy Extract",
+    "description": "Obtain imbuing essence.",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mythicarmor:mythic_shard",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "mythicarmor:essence"
+          }
+        ]
+      }
+    }
+  }
+}

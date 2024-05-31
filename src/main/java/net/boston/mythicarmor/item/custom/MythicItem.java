@@ -97,7 +97,7 @@ public class MythicItem {
 
     public static boolean isTool(ItemStack mythicItem) {
         Item item = mythicItem.getItem();
-        return item == ModItems.MYTHIC_AXE.get() || item == ModItems.MYTHIC_PICKAXE.get() || item == ModItems.MYTHIC_SHOVEL.get();
+        return item == ModItems.MYTHIC_AXE.get() || item == ModItems.MYTHIC_PICKAXE.get() || item == ModItems.MYTHIC_SHOVEL.get() || item == ModItems.MYTHIC_HOE.get();
     }
 
     public static boolean isWeapon(ItemStack mythicItem) {

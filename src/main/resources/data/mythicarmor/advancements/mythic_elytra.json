@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "mythicarmor:mythic_elytra"
+    },
+    "title": "Advanced Flight",
+    "description": "Upgrade an Elytra",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mythicarmor:mythic_item",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mythicarmor:mythic_elytra"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

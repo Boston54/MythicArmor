@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "mythicarmor:mythic_helmet"
+    },
+    "title": "Mythic Armor",
+    "description": "Mythic Armor Mod",
+    "background": "mythicarmor:textures/block/mythic_ore.png",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:location"
+    }
+  }
+}
