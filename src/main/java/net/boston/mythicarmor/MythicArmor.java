@@ -10,6 +10,7 @@ import net.boston.mythicarmor.item.ModItems;
 import net.boston.mythicarmor.item.custom.*;
 import net.boston.mythicarmor.item.elytra.MythicElytraArmorStandLayer;
 import net.boston.mythicarmor.item.elytra.MythicElytraLayer;
+import net.boston.mythicarmor.util.ModStats;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -96,6 +97,7 @@ public class MythicArmor {
             MenuScreens.register(ModMenuTypes.IMBUING_STATION_MENU.get(), ImbuingStationScreen::new);
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.IMBUING_STATION.get(), RenderType.solid());
             ModItems.registerItemColors();
+            ModStats.init();
 
             // broken elytra property
             ItemProperties.register(ModItems.MYTHIC_ELYTRA.get(), new ResourceLocation(MOD_ID, "broken"), (stack, a1, a2, a3) -> MythicElytraItem.isUseable(stack) ? 0 : 1);

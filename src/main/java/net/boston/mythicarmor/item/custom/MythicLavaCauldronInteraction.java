@@ -2,6 +2,7 @@ package net.boston.mythicarmor.item.custom;
 
 import net.boston.mythicarmor.item.ModItems;
 import net.minecraft.core.cauldron.CauldronInteraction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -20,7 +21,7 @@ public class MythicLavaCauldronInteraction {
             return InteractionResult.PASS;
         } else {
             if (!level.isClientSide) {
-                mythicItem.burnImbuements(stack);
+                mythicItem.burnImbuements(stack, (ServerPlayer)player);
 
                 // 10% Chance to remove the lava
                 if ((new Random()).nextInt(10) == 0) {

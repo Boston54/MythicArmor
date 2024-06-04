@@ -33,6 +33,8 @@ public class MythicItem {
     public static final int maxTotalImbue = 100;
     private static double[] DEFAULT_COLOR = {169, 0, 135};
 
+    private static List<ResourceKey<DamageType>> FIRE_SOURCES = List.of(DamageTypes.IN_FIRE, DamageTypes.ON_FIRE, DamageTypes.LAVA);
+
     public static int getTotalImbue(ItemStack item) {
         int x = 0;
         for (int i = 0; i < imbueNames.length; i++) {
@@ -102,16 +104,19 @@ public class MythicItem {
     }
 
     public static boolean isTool(ItemStack mythicItem) {
+        if (mythicItem == null) return false;
         Item item = mythicItem.getItem();
         return item == ModItems.MYTHIC_AXE.get() || item == ModItems.MYTHIC_PICKAXE.get() || item == ModItems.MYTHIC_SHOVEL.get() || item == ModItems.MYTHIC_HOE.get();
     }
 
     public static boolean isWeapon(ItemStack mythicItem) {
+        if (mythicItem == null) return false;
         Item item = mythicItem.getItem();
         return item == ModItems.MYTHIC_AXE.get() || item == ModItems.MYTHIC_SWORD.get();
     }
 
     public static boolean isArmor(ItemStack mythicItem) {
+        if (mythicItem == null) return false;
         Item item = mythicItem.getItem();
         return item instanceof MythicArmorItem || item == MYTHIC_ELYTRA.get();
     }
@@ -193,6 +198,7 @@ public class MythicItem {
 
             attackerWeapon = livingAttacker.getItemBySlot(EquipmentSlot.MAINHAND);
         }
+        boolean attackerIsWeapon = isWeapon(attackerWeapon);
 
         // do prosperity first so the dodging can take effect first
         // Prosperity
@@ -206,11 +212,15 @@ public class MythicItem {
                 return;
             }
         }
-        if (attackerProsperity > 0) {
+        if (attackerProsperity > 0 && attackerIsWeapon) {
             // +0.1% chance to instantly kill any enemy with less than 100 max health
-            if (attackerLiving && livingAttacker.getMaxHealth() < 100) {
+            if (livingAttacker.getMaxHealth() < 100) {
                 if (getProc() < attackerProsperity * 0.1) {
-                    event.setAmount(10000);
+                    if (attacker instanceof Player player)
+                        target.hurt(target.level().damageSources().playerAttack(player), 10000);
+                    else
+                        target.hurt(target.level().damageSources().mobAttack((LivingEntity) attacker), 10000);
+                    System.out.println("test");
                 }
             }
         }
@@ -224,13 +234,12 @@ public class MythicItem {
                 attacker.setRemainingFireTicks(80);
             }
             // +0.75% outgoing damage to non-fireproof enemies
-            if (!target.fireImmune()) {
+            if (!target.fireImmune() && isWeapon(attackerWeapon)) {
                 damageAmount += damageAmount * ((attackerMagma * 0.75f) / 100);
             }
         } else {
             // Reduce damage by 0.5% per level if fire
-            List<ResourceKey<DamageType>> fireSources = List.of(DamageTypes.IN_FIRE, DamageTypes.ON_FIRE, DamageTypes.LAVA);
-            if (fireSources.stream().anyMatch(damageSource::is)) {
+            if (FIRE_SOURCES.stream().anyMatch(damageSource::is)) {
                 damageAmount -= damageAmount * ((targetMagma * 0.5f) / 100);
             }
         }
@@ -238,7 +247,7 @@ public class MythicItem {
         // Ender
         int targetEnder = getImbueFromEquipment(targetEquipment, 1);
         int attackerEnder = getImbueAmount(attackerWeapon, 1);
-        if (attackerLiving) {
+        if (attackerLiving && isWeapon(attackerWeapon)) {
             // +1% outgoing damage to enemies with more than 100 max hp
             if (attackerEnder > 0 && target.getMaxHealth() >= 100) {
                 // Increase the damage
@@ -253,7 +262,7 @@ public class MythicItem {
 
         // Amethyst
         int attackerAmethyst = getImbueFromEquipment(targetEquipment, 3);
-        if (attackerAmethyst > 0) {
+        if (attackerAmethyst > 0 && isWeapon(attackerWeapon)) {
             // +0.5% outgoing damage
             damageAmount += damageAmount * ((attackerAmethyst * 0.5) / 100);
         }
@@ -281,17 +290,13 @@ public class MythicItem {
         ItemStack attackerWeapon = player.getItemBySlot(EquipmentSlot.MAINHAND);
 
         // Ancient
-        System.out.println("Picked up orb");
         int attackerAncientEquipment = getImbueFromEquipment(attackerEquipment, 5);
         int attackerAncientWeapon = getImbueAmount(attackerWeapon, 5);
         if (attackerAncientEquipment + attackerAncientWeapon > 0) {
-            System.out.println("Wearing ancient shit");
             float expMultiplier = 1 + (attackerAncientEquipment * 0.005f) + (attackerAncientWeapon * 0.01f);
             int xpAmount = event.getAmount();
             int modifiedXp = Math.round(xpAmount * expMultiplier);
-            System.out.println("Initial xp: " + xpAmount);
             event.setAmount(modifiedXp);
-            System.out.println("Altered xp: " + modifiedXp + " (" + expMultiplier + "x)");
         }
     }
 

@@ -1,6 +1,8 @@
 package net.boston.mythicarmor.item.custom;
 
+import net.boston.mythicarmor.util.ModStats;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.ItemStack;
 
@@ -28,7 +30,7 @@ public interface ColorableMythicItem extends DyeableLeatherItem {
 //        }
     }
 
-    default void burnImbuements(ItemStack stack) {
+    default void burnImbuements(ItemStack stack, ServerPlayer player) {
         // Get the imbuements on the item for each type
         HashMap<MythicItemEffects.ImbueType, Integer> currentImbuements = new HashMap<>();
         for (MythicItemEffects.ImbueType type : MythicItemEffects.ImbueType.values()) {
@@ -57,6 +59,9 @@ public interface ColorableMythicItem extends DyeableLeatherItem {
             // Modify the int
             nbtTag.putInt(key, imbueAmount - 1);
         }
+
+        player.awardStat(ModStats.BURNT_IMBUEMENTS_STAT, 10);
+        System.out.println(player.getStats().getValue(ModStats.BURNT_IMBUEMENTS_STAT));
     }
 
     @Override
