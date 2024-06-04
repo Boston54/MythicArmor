@@ -38,7 +38,8 @@ public class MythicItemEffects {
         ENDER(1),
         PROSPERITY(2),
         AMETHYST(3),
-        AGILITY(4);
+        AGILITY(4),
+        ANCIENT(5);
 
         public final int typeIndex;
 

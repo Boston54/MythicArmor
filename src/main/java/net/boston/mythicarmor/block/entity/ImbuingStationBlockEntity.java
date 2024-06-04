@@ -161,9 +161,7 @@ public class ImbuingStationBlockEntity extends BlockEntity implements MenuProvid
 
                 pEntity.itemHandler.extractItem(0, 1, false);
 
-                if (pEntity.itemHandler.getStackInSlot(1).isEmpty()) {
-                    pEntity.getLevel().playLocalSound(pEntity.getBlockPos(), SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 1f, 1f, false);
-                }
+                pEntity.getLevel().playSound(null, pEntity.getBlockPos(), SoundEvents.BREWING_STAND_BREW, SoundSource.BLOCKS, 0.3f, 0.6f);
 
                 pEntity.resetProgress();
             }

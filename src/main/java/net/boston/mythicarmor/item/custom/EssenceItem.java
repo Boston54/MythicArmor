@@ -75,6 +75,14 @@ public class EssenceItem extends Item {
                 pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + " *§7 (at 50%) +1 efficiency level (+2 total)"));
                 pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + " *§7 (at 75%) +1 efficiency level (+3 total)"));
                 pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + " *§7 (at 100%) +1 efficiency level (+4 total)"));
+                break;
+            case 5:
+                // Ancient
+                pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + "To Armor:"));
+                pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + " *§7 +0.5% experience gain"));
+                pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + "To Weapons:"));
+                pTooltipComponents.add(Component.literal(ModItems.imbueColors[i] + " *§7 +1% experience gain"));
+                break;
         }
         super.appendHoverText(item, pLevel, pTooltipComponents, pIsAdvanced);
     }
@@ -85,6 +93,7 @@ public class EssenceItem extends Item {
         if (essenceItem == ModItems.PROSPERITY_ESSENCE.get()) return 2;
         if (essenceItem == ModItems.AMETHYST_ESSENCE.get()) return 3;
         if (essenceItem == ModItems.AGILITY_ESSENCE.get()) return 4;
+        if (essenceItem == ModItems.ANCIENT_ESSENCE.get()) return 5;
         return 0;
     }
 }

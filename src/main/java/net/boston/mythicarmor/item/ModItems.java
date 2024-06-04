@@ -7,7 +7,10 @@ import net.boston.mythicarmor.item.materials.ModToolMaterial;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.SmithingTemplateItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -28,15 +31,17 @@ public class ModItems {
     public static final RegistryObject<Item> MYTHIC_INGOT = ITEMS.register("mythic_ingot", () ->
             new Item(new Item.Properties().rarity(Rarity.RARE)));
     public static final RegistryObject<Item> MAGMA_ESSENCE = ITEMS.register("magma_essence", () ->
-            new EssenceItem(new Item.Properties().rarity(Rarity.RARE)));
+            new EssenceItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> ENDER_ESSENCE = ITEMS.register("ender_essence", () ->
-            new EssenceItem(new Item.Properties().rarity(Rarity.RARE)));
+            new EssenceItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> PROSPERITY_ESSENCE = ITEMS.register("prosperity_essence", () ->
-            new EssenceItem(new Item.Properties().rarity(Rarity.RARE)));
+            new EssenceItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> AMETHYST_ESSENCE = ITEMS.register("amethyst_essence", () ->
-            new EssenceItem(new Item.Properties().rarity(Rarity.RARE)));
+            new EssenceItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> AGILITY_ESSENCE = ITEMS.register("agility_essence", () ->
-            new EssenceItem(new Item.Properties().rarity(Rarity.RARE)));
+            new EssenceItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> ANCIENT_ESSENCE = ITEMS.register("ancient_essence", () ->
+            new EssenceItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> MYTHIC_BOOTS = ITEMS.register("mythic_boots", () ->
             new MythicArmorItem(ModArmorMaterial.MYTHIC, ArmorItem.Type.BOOTS, new Item.Properties().rarity(Rarity.EPIC).fireResistant()));
     public static final RegistryObject<Item> MYTHIC_LEGGINGS = ITEMS.register("mythic_leggings", () ->
@@ -67,20 +72,20 @@ public class ModItems {
                     Component.literal("Add Netherite Armor, Weapon, or Tool, or Elytra"), Component.literal("Add Mythic Ingot"), EMPTY_SLOTS, List.of(new ResourceLocation("item/empty_slot_ingot"))));
 
 
-    public static final RegistryObject<Item>[] ESSENCES_ARR = new RegistryObject[]{MAGMA_ESSENCE, ENDER_ESSENCE, PROSPERITY_ESSENCE, AMETHYST_ESSENCE, AGILITY_ESSENCE};
+    public static final RegistryObject<Item>[] ESSENCES_ARR = new RegistryObject[]{MAGMA_ESSENCE, ENDER_ESSENCE, PROSPERITY_ESSENCE, AMETHYST_ESSENCE, AGILITY_ESSENCE, ANCIENT_ESSENCE};
     public static final RegistryObject<Item>[] MYTHIC_ITEMS_ARR = new RegistryObject[]{
             MYTHIC_HELMET, MYTHIC_CHESTPLATE, MYTHIC_LEGGINGS, MYTHIC_BOOTS, MYTHIC_SWORD, MYTHIC_AXE, MYTHIC_PICKAXE, MYTHIC_SHOVEL, MYTHIC_HOE, MYTHIC_ELYTRA};
 
 
     // The order to display the imbued percentages in the item description. Must follow the same order
     // as the meaning of each index in imbueColors array
-    public static final String[] imbueNames = {"Magma", "Ender", "Prosperity", "Amethyst", "Agility"};
+    public static final String[] imbueNames = {"Magma", "Ender", "Prosperity", "Amethyst", "Agility", "Ancient"};
     // The color of each of the types, in the same order as the other array
-    public static final String[] imbueColors = {"§6", "§5", "§a", "§d", "§e"};
-    public static final String[] tagNames = {"imbue.magma", "imbue.ender", "imbue.prosperity", "imbue.amethyst", "imbue.agility"};
+    public static final String[] imbueColors = {"§6", "§5", "§a", "§d", "§e", "§1"};
+    public static final String[] tagNames = {"imbue.magma", "imbue.ender", "imbue.prosperity", "imbue.amethyst", "imbue.agility", "imbue.ancient"};
     public static final double[][] imbueRGBs = {new double[]{255, 170, 0}, new double[]{170, 0, 170},
                                                 new double[]{85, 255, 85}, new double[]{255, 85, 255},
-                                                new double[]{255, 255, 85}};
+                                                new double[]{255, 255, 85}, new double[]{68, 0, 255}};
 
     public static void registerItemColors() {
         Minecraft.getInstance().getItemColors().register(

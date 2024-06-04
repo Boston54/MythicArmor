@@ -1,8 +1,6 @@
 package net.boston.mythicarmor.item.custom;
 
 import com.google.common.collect.Multimap;
-import net.boston.mythicarmor.item.ModItems;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -19,7 +17,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
-import static net.boston.mythicarmor.item.custom.MythicItem.*;
+import static net.boston.mythicarmor.item.custom.MythicItem.addImbueTooltip;
+import static net.boston.mythicarmor.item.custom.MythicItem.changeEnchant;
 
 public class MythicSwordItem extends SwordItem implements ColorableMythicItem {
     public MythicSwordItem(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
@@ -30,61 +29,8 @@ public class MythicSwordItem extends SwordItem implements ColorableMythicItem {
     public void appendHoverText(ItemStack item, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         addImbueTooltip(item, pTooltipComponents);
 
-        // Detailed imbued stats
-        int totalImbue = getTotalImbue(item);
-        if (totalImbue > 0) {
-            pTooltipComponents.add(Component.literal(""));
-            if (Screen.hasShiftDown()) {
+        MythicItem.createDetailedImbueDetails(pTooltipComponents, item);
 
-                // Magma
-                double magma = getImbueAmount(item, 0);
-                String magmaStart = ModItems.imbueColors[0] + " * §7";
-                if (magma > 0) {
-                    pTooltipComponents.add(Component.literal(magmaStart+"+"+(magma*0.75)+"% outgoing damage to non-fire-resistant"));
-                    pTooltipComponents.add(Component.literal("§7   enemies"));
-                }
-
-                // Ender
-                double ender = getImbueAmount(item, 1);
-                String enderStart = ModItems.imbueColors[1] + " * §7";
-                if (ender > 0) {
-                    pTooltipComponents.add(Component.literal(enderStart+"+"+(ender)+"% outgoing damage to enemies with more"));
-                    pTooltipComponents.add(Component.literal("§7   than 100 max health"));
-                }
-
-                // Prosperity
-                double prosp = getImbueAmount(item, 2);
-                String prospStart = ModItems.imbueColors[2] + " * §7";
-                if (prosp > 0) {
-                    pTooltipComponents.add(Component.literal(prospStart+(prosp/10)+"% chance to insta-kill any enemy with"));
-                    pTooltipComponents.add(Component.literal("§7   less than 100 max health"));
-                    if (prosp >= 50) {
-                        if (prosp <= 99) pTooltipComponents.add(Component.literal(prospStart+"+1 level of looting"));
-                        else pTooltipComponents.add(Component.literal(prospStart+"+2 levels of looting"));
-                    }
-                }
-
-                // Amethyst
-                double amethyst = getImbueAmount(item, 3);
-                String amethystStart = ModItems.imbueColors[3] + " * §7";
-                if (amethyst > 0) {
-                    pTooltipComponents.add(Component.literal(amethystStart+"+"+(amethyst/2)+"% outgoing damage"));
-                    if (amethyst == 100)
-                        pTooltipComponents.add(Component.literal(amethystStart+"Unbreakable"));
-                }
-
-                // Agility
-                double agility = getImbueAmount(item, 4);
-                String agilityStart = ModItems.imbueColors[4] + " * §7";
-                if (agility > 0) {
-                    pTooltipComponents.add(Component.literal(agilityStart+"+"+(agility*0.5)+"% attack speed"));
-                }
-
-            } else {
-                pTooltipComponents.add(Component.literal("§2[SHIFT] for imbued stats"));
-            }
-            pTooltipComponents.add(Component.literal(""));
-        }
         super.appendHoverText(item, pLevel, pTooltipComponents, pIsAdvanced);
     }
 

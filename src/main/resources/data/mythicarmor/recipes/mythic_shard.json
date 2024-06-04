@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "mythicarmor:mythic_block"
+        }
+    ],
+    "result": {
+        "item": "mythicarmor:mythic_shard",
+        "count": 9
+    }
+}

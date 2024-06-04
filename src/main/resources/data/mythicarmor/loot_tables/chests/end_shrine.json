@@ -10,17 +10,17 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:netherite_scrap",
-          "weight": 4
+          "weight": 8
         },
         {
           "type": "minecraft:item",
           "name": "minecraft:ancient_debris",
-          "weight": 5
+          "weight": 10
         },
         {
           "type": "minecraft:item",
           "name": "mythicarmor:mythic_shard",
-          "weight": 20,
+          "weight": 35,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -34,7 +34,7 @@
         {
           "type": "minecraft:item",
           "name": "mythicarmor:mythic_upgrade",
-          "weight": 1
+          "weight": 2
         },
         {
           "type": "minecraft:item",
@@ -44,7 +44,7 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:glass_bottle",
-          "weight": 8,
+          "weight": 15,
           "functions": [
             {
               "function": "minecraft:set_count",

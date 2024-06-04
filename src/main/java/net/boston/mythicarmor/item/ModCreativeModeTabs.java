@@ -21,12 +21,14 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.MYTHIC_SHARD.get());
                         pOutput.accept(ModItems.MYTHIC_INGOT.get());
                         pOutput.accept(ModBlocks.MYTHIC_ORE.get());
+                        pOutput.accept(ModBlocks.MYTHIC_BLOCK.get());
                         pOutput.accept(ModItems.MYTHIC_UPGRADE.get());
                         pOutput.accept(ModItems.MAGMA_ESSENCE.get());
                         pOutput.accept(ModItems.ENDER_ESSENCE.get());
                         pOutput.accept(ModItems.PROSPERITY_ESSENCE.get());
                         pOutput.accept(ModItems.AMETHYST_ESSENCE.get());
                         pOutput.accept(ModItems.AGILITY_ESSENCE.get());
+                        pOutput.accept(ModItems.ANCIENT_ESSENCE.get());
                         pOutput.accept(ModItems.MYTHIC_HELMET.get());
                         pOutput.accept(ModItems.MYTHIC_CHESTPLATE.get());
                         pOutput.accept(ModItems.MYTHIC_LEGGINGS.get());

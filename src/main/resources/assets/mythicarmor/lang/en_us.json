@@ -7,6 +7,7 @@
   "item.mythicarmor.prosperity_essence": "Essence of Prosperity",
   "item.mythicarmor.amethyst_essence": "Essence of Amethyst",
   "item.mythicarmor.agility_essence": "Essence of Agility",
+  "item.mythicarmor.ancient_essence": "Essence of the Ancients",
 
   "item.mythicarmor.mythic_helmet": "Mythic Helmet",
   "item.mythicarmor.mythic_chestplate": "Mythic Chestplate",
@@ -23,6 +24,9 @@
 
   "block.mythicarmor.mythic_ore": "Mythic Ore",
   "block.mythicarmor.imbuing_station": "Imbuing Station",
+  "block.mythicarmor.mythic_block": "Mythic Block",
+
+  "item.mythicarmor.mythic_extract_bucket": "Mythic Extract Bucket",
 
   "creativetab.mythic_armor_tab": "Mythic Armor"
 }

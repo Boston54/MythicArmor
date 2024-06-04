@@ -23,10 +23,10 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> MYTHIC_ORE = registerBlock("mythic_ore",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.ANCIENT_DEBRIS).mapColor(MapColor.COLOR_MAGENTA).sound(SoundType.STONE)));
-
     public static final RegistryObject<Block> IMBUING_STATION = registerBlock("imbuing_station",
             () -> new ImbuingStation(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE)));
-
+    public static final RegistryObject<Block> MYTHIC_BLOCK = registerBlock("mythic_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.ANCIENT_DEBRIS).mapColor(MapColor.COLOR_MAGENTA).sound(SoundType.AMETHYST).lightLevel(s -> 10)));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

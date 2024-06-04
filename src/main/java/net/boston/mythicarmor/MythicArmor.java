@@ -74,7 +74,7 @@ public class MythicArmor {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
+        MythicLavaCauldronInteraction.init();
     }
 
     // Add the example block item to the building blocks tab
@@ -116,7 +116,6 @@ public class MythicArmor {
             if (livingEntityRenderer instanceof ArmorStandRenderer armorStandRenderer) {
                 armorStandRenderer.addLayer(new MythicElytraArmorStandLayer(armorStandRenderer, entityModels));
             }
-
         }
     }
 }
