@@ -1,0 +1,67 @@
+{
+  "display": {
+    "icon": {
+      "item": "mythicarmor:mythic_sword",
+      "nbt": "{imbue.ancient:100}"
+    },
+    "title": "Dedicated Grinder",
+    "description": "Kill something while wearing a full set of 100% ancient mythic armor using a 100% ancient mythic sword.",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "mythicarmor:imbue_ancient",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:all_of",
+            "terms": [
+              {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "equipment": {
+                    "head": {
+                      "items": [
+                        "mythicarmor:mythic_helmet"
+                      ],
+                      "nbt": "{imbue.ancient:100}"
+                    },
+                    "chest": {
+                      "items": [
+                        "mythicarmor:mythic_chestplate"
+                      ],
+                      "nbt": "{imbue.ancient:100}"
+                    },
+                    "legs": {
+                      "items": [
+                        "mythicarmor:mythic_leggings"
+                      ],
+                      "nbt": "{imbue.ancient:100}"
+                    },
+                    "feet": {
+                      "items": [
+                        "mythicarmor:mythic_boots"
+                      ],
+                      "nbt": "{imbue.ancient:100}"
+                    },
+                    "mainhand": {
+                      "items": [
+                        "mythicarmor:mythic_sword"
+                      ],
+                      "nbt": "{imbue.ancient:100}"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
