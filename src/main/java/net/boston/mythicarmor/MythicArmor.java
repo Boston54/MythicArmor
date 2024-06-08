@@ -76,6 +76,7 @@ public class MythicArmor {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         MythicLavaCauldronInteraction.init();
+        MinecraftForge.EVENT_BUS.register(MythicItem.class);
     }
 
     // Add the example block item to the building blocks tab
