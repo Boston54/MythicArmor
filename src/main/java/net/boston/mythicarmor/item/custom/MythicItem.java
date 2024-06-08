@@ -179,8 +179,6 @@ public class MythicItem {
         ItemStack targetBoots = target.getItemBySlot(EquipmentSlot.FEET);
         List<ItemStack> targetEquipment = List.of(targetHelmet, targetChestplate, targetLeggings, targetBoots);
 
-        System.out.println("LivingHurtEvent");
-
 
         List<ItemStack> attackerEquipment = null;
         ItemStack attackerWeapon = null;
@@ -281,8 +279,6 @@ public class MythicItem {
     @SubscribeEvent
     public static void onXpChange(PlayerXpEvent.XpChange event) {
         Player player = event.getEntity();
-
-        System.out.println("XP Change Event");
 
         ItemStack attackerHelmet = player.getItemBySlot(EquipmentSlot.HEAD);
         ItemStack attackerChestplate = player.getItemBySlot(EquipmentSlot.CHEST);
